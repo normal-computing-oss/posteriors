@@ -129,5 +129,5 @@ We can see the variational Gaussian ignores the multiple modes,
 but SGHMC explores them well.
 
 !!! note
-    The raw code for this example can be found in the repo at [examples/double_well.py](https://github.com/normal-computing/posteriors/blob/main/examples/double_well.py).
+    The raw code for this example can be found in the repo at [examples/double_well.py](https://github.com/normal-computing-oss/posteriors/blob/main/examples/double_well.py).
 

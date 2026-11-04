@@ -213,7 +213,7 @@ increasing uncertainty as we move further from the last match. But as we observe
 matches, the uncertainty decreases.
 
 !!! note
-    The raw code for this example can be found in the repo at [examples/ekf_premier_league.py](https://github.com/normal-computing/posteriors/blob/main/examples/ekf_premier_league.py).
+    The raw code for this example can be found in the repo at [examples/ekf_premier_league.py](https://github.com/normal-computing-oss/posteriors/blob/main/examples/ekf_premier_league.py).
 
 
 

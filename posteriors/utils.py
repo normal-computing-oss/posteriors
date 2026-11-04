@@ -27,14 +27,14 @@ class CatchAuxError(contextlib.AbstractContextManager):
                     "the aux output?\n"
                     "\tIf you don't have any auxiliary info, simply amend to e.g. "
                     "log_posterior(params, batch) -> Tuple[float, torch.tensor([])].\n"
-                    "\tMore info at https://normal-computing.github.io/posteriors/log_posteriors"
+                    "\tMore info at https://normal-computing-oss.github.io/posteriors/log_posteriors"
                 )
             elif NON_TENSOR_AUX_ERROR_MSG in str(exc_value):
                 raise RuntimeError(
                     "Auxiliary output should be a TensorTree. If you don't have any "
                     "auxiliary info, simply amend to e.g. "
                     "log_posterior(params, batch) -> Tuple[float, torch.tensor([])].\n"
-                    "\tMore info at https://normal-computing.github.io/posteriors/log_posteriors"
+                    "\tMore info at https://normal-computing-oss.github.io/posteriors/log_posteriors"
                 )
         return False
 

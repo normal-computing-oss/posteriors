@@ -4,8 +4,8 @@ site_author: Normal Computing
 site_description: Uncertainty Quantification with PyTorch
 
 # Repository
-repo_name: normal-computing/posteriors
-repo_url: https://github.com/normal-computing/posteriors
+repo_name: normal-computing-oss/posteriors
+repo_url: https://github.com/normal-computing-oss/posteriors
 
 # Configuration
 theme:

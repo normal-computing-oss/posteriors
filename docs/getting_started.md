@@ -9,10 +9,10 @@ pip install posteriors
 
 Uncertainty quantification allows for informed decision making by averaging over
 multiple plausible model configurations rather than relying on a single point estimate.
-Thus providing a coherent framework for detecting [**out of distribution**](https://github.com/normal-computing/posteriors/tree/main/examples/yelp)
-inputs and [**continual learning**](https://github.com/normal-computing/posteriors/tree/main/examples/continual_lora).
+Thus providing a coherent framework for detecting [**out of distribution**](https://github.com/normal-computing-oss/posteriors/tree/main/examples/yelp)
+inputs and [**continual learning**](https://github.com/normal-computing-oss/posteriors/tree/main/examples/continual_lora).
 
-For more info on the utility of UQ, check out our [blog post introducing `posteriors`]([https://blog.normalcomputing.com/](https://www.normalcomputing.com/blog/posteriors-normal-computings-library-for-uncertainty-aware-llms-3))!
+For more info on the utility of UQ, check out our [blog post introducing `posteriors`](https://www.normalcomputing.com/blog/posteriors-normal-computings-library-for-uncertainty-aware-llms-3)!
 
 
 ## Quick Start

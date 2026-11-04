@@ -8,7 +8,7 @@
 | [**Friends**](#friends)
 | [**Contributing**](#contributing)
 | [**Citation**](#citation)
-| [**Documentation**](https://normal-computing.github.io/posteriors/)
+| [**Documentation**](https://normal-computing-oss.github.io/posteriors/)
 | [**Paper**](https://arxiv.org/abs/2406.00104)
 
 ## What is `posteriors`?
@@ -80,9 +80,9 @@ Further, the output of `log_posterior` is a tuple containing the evaluation
 auxiliary information we'd like to retain from the model call, here the model predictions.
 If you have no auxiliary information, you can simply return `torch.tensor([])` as
 the second element. For more info see [`torch.func.grad`](https://pytorch.org/docs/stable/generated/torch.func.grad.html) 
-(with `has_aux=True`) or the [documentation](https://normal-computing.github.io/posteriors/log_posteriors).
+(with `has_aux=True`) or the [documentation](https://normal-computing-oss.github.io/posteriors/log_posteriors).
 
-Check out the [tutorials](https://normal-computing.github.io/posteriors/tutorials) for more detailed usage!
+Check out the [tutorials](https://normal-computing-oss.github.io/posteriors/tutorials) for more detailed usage!
 
 ## Methods
 
@@ -93,10 +93,10 @@ Check out the [tutorials](https://normal-computing.github.io/posteriors/tutorial
 - [**Stochastic gradient MCMC**](posteriors/sgmcmc/)
 - [**Variational inference**](posteriors/vi/)
 
-With full details available in the [API documentation](https://normal-computing.github.io/posteriors/api).
+With full details available in the [API documentation](https://normal-computing-oss.github.io/posteriors/api).
 
 `posteriors` is designed to be easily extensible, if you're favorite method is not listed above,
-[raise an issue]((https://github.com/normal-computing/posteriors/issues)) and we'll see what we can do!
+[raise an issue](https://github.com/normal-computing-oss/posteriors/issues) and we'll see what we can do!
 
 
 ## Friends
@@ -119,10 +119,10 @@ As well as other UQ libraries [`fortuna`](https://github.com/awslabs/fortuna),
 
 ## Contributing
 
-You can report a bug or request a feature by [creating a new issue on GitHub](https://github.com/normal-computing/posteriors/issues).
+You can report a bug or request a feature by [creating a new issue on GitHub](https://github.com/normal-computing-oss/posteriors/issues).
 
 
-If you want to contribute code, please check the [contributing guide](https://normal-computing.github.io/posteriors/contributing).
+If you want to contribute code, please check the [contributing guide](https://normal-computing-oss.github.io/posteriors/contributing).
 
 
 ## Citation

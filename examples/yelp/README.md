@@ -112,7 +112,7 @@ information matrix, $\hat{F} = \sum_{n} \nabla_\theta \log p(y_n \mid x_n, \thet
 our case, all values of the diagonal empirical Fisher information matrix
 were less than $10^{-22}$. For more information on the empirical Fisher information 
 matrix and how its use is only advised in large data settings, see [Kunstner et al](https://arxiv.org/abs/1905.12558).
-Additionally, the [continual lora example](https://github.com/normal-computing/posteriors/tree/main/examples/continual_lora)
+Additionally, the [continual lora example](https://github.com/normal-computing-oss/posteriors/tree/main/examples/continual_lora)
 provides an in depth example of how the empirical Fisher Laplace approximation can be 
 used in a practical continual learning setting.
 
