@@ -1,10 +1,10 @@
 If you want to add a new algorithm, example, feature, report or fix a bug, please open 
-an [issue on GitHub](https://github.com/normal-computing/posteriors/issues). 
+an [issue on GitHub](https://github.com/normal-computing-oss/posteriors/issues). 
 We'd love to have you involved in any capacity!
 
 If you are interested in contributing to `posteriors`, please follow these steps:
 
-1. [Fork the repo from GitHub](https://github.com/normal-computing/posteriors/fork)
+1. [Fork the repo from GitHub](https://github.com/normal-computing-oss/posteriors/fork)
 and clone it locally:
 ```
 git clone git@github.com/YourUserName/posteriors.git
@@ -29,7 +29,7 @@ pre-commit run --all-files
 python -m pytest --cov=posteriors --cov-report term-missing
 ```
 6. Commit your changes and push your new branch to your fork.
-7. Open a [pull request on GitHub](https://github.com/normal-computing/posteriors/pulls).
+7. Open a [pull request on GitHub](https://github.com/normal-computing-oss/posteriors/pulls).
 
 [^1]: For more docs info check out [mkdocs-material](https://squidfunk.github.io/mkdocs-material/).
 
