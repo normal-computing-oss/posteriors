@@ -1,0 +1,16 @@
+/* Theme color */
+:root {
+    --md-primary-fg-color:        #cc1921;
+    --md-accent-fg-color:        #cc1921;
+  }
+
+/* Left padding for functions/classes */
+div.doc-contents:not(.first) {
+  padding-left: 25px;
+  border-left: 1px solid rgba(230, 230, 230);
+}
+
+/* Decrease font size, Material default is 137.5% */
+html {
+  font-size: 120%;
+}
