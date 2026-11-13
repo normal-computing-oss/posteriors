@@ -712,7 +712,8 @@ def cg(
         atol: Tolerance for convergence. ``norm(residual) <= max(tol*norm(b), atol)``.
             The behaviour will differ from SciPy unless you explicitly pass
             ``atol`` to SciPy's ``cg``.
-        M: Preconditioner for A.
+        M: Preconditioner for A. Maps a residual to an approximate solution of
+            the damped linear system. Applied to the initial residual and each update.
             See [the preconditioned CG method.](https://en.wikipedia.org/wiki/Conjugate_gradient_method#The_preconditioned_conjugate_gradient_method)
 
     Returns:
@@ -753,7 +754,7 @@ def cg(
         return x_, r_, gamma_, p_, k + 1
 
     r0 = _sub(b, A_damped(x0))
-    p0 = z0 = r0
+    p0 = z0 = M(r0)
     gamma0 = _vdot_real_tree(r0, z0)
     initial_value = (x0, r0, gamma0, p0, 0)
 

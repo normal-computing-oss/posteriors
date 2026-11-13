@@ -659,6 +659,32 @@ def test_cg():
     assert torch.allclose(sol, tree_ravel(sol_cg)[0], rtol=1e-3)
 
 
+@pytest.mark.parametrize("as_tree", [False, True])
+@pytest.mark.parametrize("nonzero_start", [False, True])
+@pytest.mark.parametrize("damping", [0.0, 0.5])
+def test_cg_exact_preconditioner(as_tree, nonzero_start, damping):
+    diagonal = torch.tensor([1.0, 4.0, 9.0], dtype=torch.float64)
+    b = torch.tensor([2.0, 3.0, 5.0], dtype=torch.float64)
+    if as_tree:
+        b = {"weight": b}
+    x0 = tree_map(lambda v: torch.full_like(v, 0.25), b) if nonzero_start else None
+
+    solution, info = cg(
+        lambda v: tree_map(lambda t: diagonal * t, v),
+        b,
+        x0=x0,
+        damping=damping,
+        M=lambda v: tree_map(lambda t: t / (diagonal + damping), v),
+        maxiter=1,
+        tol=1e-6,
+    )
+
+    expected = tree_map(lambda t: t / (diagonal + damping), b)
+    tree_map(torch.testing.assert_close, solution, expected)
+    assert info["converged"]
+    assert info["niter"] == 1
+
+
 def test_diag_normal_log_prob():
     # Test tree mean and tree sd
     mean = {"a": torch.tensor([1.0, 2.0]), "b": torch.tensor([3.0, 4.0])}
