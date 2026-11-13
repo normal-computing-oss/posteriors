@@ -783,6 +783,7 @@ def diag_normal_log_prob(
 
     If either mean or sd_diag are scalars, they will be broadcast to the same shape as x
     (in a memory efficient manner).
+    A tree containing a single-element tensor retains its structure.
 
     Args:
         x: Value to evaluate log probability at.
@@ -794,9 +795,9 @@ def diag_normal_log_prob(
     Returns:
         Scalar log probability.
     """
-    if tree_size(mean) == 1:
+    if is_scalar(mean):
         mean = tree_map(lambda t: torch.tensor(mean, device=t.device), x)
-    if tree_size(sd_diag) == 1:
+    if is_scalar(sd_diag):
         sd_diag = tree_map(lambda t: torch.tensor(sd_diag, device=t.device), x)
 
     if normalize:
@@ -827,6 +828,7 @@ def diag_normal_sample(
 
     If sd_diag is scalar, it will be broadcast to the same shape as mean
     (in a memory efficient manner).
+    A tree containing a single-element tensor retains its structure.
 
     Args:
         mean: Mean of the distribution.
@@ -836,7 +838,7 @@ def diag_normal_sample(
     Returns:
         Sample(s) from normal distribution with the same structure as mean and sd_diag.
     """
-    if tree_size(sd_diag) == 1:
+    if is_scalar(sd_diag):
         sd_diag = tree_map(lambda t: torch.tensor(sd_diag, device=t.device), mean)
 
     return tree_map(
