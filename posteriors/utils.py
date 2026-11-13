@@ -783,7 +783,6 @@ def diag_normal_log_prob(
 
     If either mean or sd_diag are scalars, they will be broadcast to the same shape as x
     (in a memory efficient manner).
-    A tree containing a single-element tensor retains its structure.
 
     Args:
         x: Value to evaluate log probability at.
@@ -828,7 +827,6 @@ def diag_normal_sample(
 
     If sd_diag is scalar, it will be broadcast to the same shape as mean
     (in a memory efficient manner).
-    A tree containing a single-element tensor retains its structure.
 
     Args:
         mean: Mean of the distribution.
