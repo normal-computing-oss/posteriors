@@ -1,3 +1,4 @@
+from dataclasses import field
 from typing import Callable, Any, Tuple
 from functools import partial
 import torch
@@ -80,8 +81,8 @@ class VIDenseState(TensorClass["frozen"]):
     params: TensorTree
     L_factor: torch.Tensor
     opt_state: torchopt.typing.OptState
-    nelbo: torch.Tensor = torch.tensor([])
-    step: torch.Tensor = torch.tensor(0)
+    nelbo: torch.Tensor = field(default_factory=lambda: torch.tensor([]))
+    step: torch.Tensor = field(default_factory=lambda: torch.tensor(0))
 
 
 def init(

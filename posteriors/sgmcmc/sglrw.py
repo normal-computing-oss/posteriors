@@ -1,3 +1,5 @@
+from dataclasses import field
+
 # type: ignore          posteriors is not typed
 from typing import Any
 from functools import partial
@@ -66,8 +68,8 @@ class SGLRWState(TensorClass["frozen"]):
     """
 
     params: TensorTree
-    log_posterior: Tensor = torch.tensor(torch.nan)
-    step: Tensor = torch.tensor(0)
+    log_posterior: Tensor = field(default_factory=lambda: torch.tensor(torch.nan))
+    step: Tensor = field(default_factory=lambda: torch.tensor(0))
 
 
 def init(params: TensorTree) -> SGLRWState:

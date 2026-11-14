@@ -1,3 +1,4 @@
+from dataclasses import field
 from functools import partial
 from typing import Any
 import torch
@@ -76,7 +77,7 @@ class DiagLaplaceState(TensorClass["frozen"]):
 
     params: TensorTree
     prec_diag: TensorTree
-    step: torch.Tensor = torch.tensor(0)
+    step: torch.Tensor = field(default_factory=lambda: torch.tensor(0))
 
 
 def init(

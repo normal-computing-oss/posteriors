@@ -1,3 +1,4 @@
+from dataclasses import field
 from typing import Any
 from functools import partial
 import torch
@@ -79,8 +80,8 @@ class SGHMCState(TensorClass["frozen"]):
 
     params: TensorTree
     momenta: TensorTree
-    log_posterior: torch.Tensor = torch.tensor(torch.nan)
-    step: torch.Tensor = torch.tensor(0)
+    log_posterior: torch.Tensor = field(default_factory=lambda: torch.tensor(torch.nan))
+    step: torch.Tensor = field(default_factory=lambda: torch.tensor(0))
 
 
 def init(params: TensorTree, momenta: TensorTree | float | None = None) -> SGHMCState:
