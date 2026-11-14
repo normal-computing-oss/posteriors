@@ -784,6 +784,64 @@ def test_diag_normal_sample():
         assert torch.equal(result[key], expected[key])
 
 
+@pytest.mark.parametrize("as_tuple", [False, True])
+@pytest.mark.parametrize("shape", [(), (1,)])
+@pytest.mark.parametrize("structured", ["mean", "sd", "both"])
+@pytest.mark.parametrize("normalize", [False, True])
+def test_diag_normal_log_prob_singleton_tree(as_tuple, shape, structured, normalize):
+    def wrap(value):
+        return (value,) if as_tuple else {"weight": value}
+
+    value = torch.full(shape, 1.5)
+    mean = torch.full(shape, 0.5)
+    sd = torch.full(shape, 2.0)
+    result = diag_normal_log_prob(
+        wrap(value),
+        wrap(mean) if structured in ("mean", "both") else 0.5,
+        wrap(sd) if structured in ("sd", "both") else 2.0,
+        normalize=normalize,
+    )
+    expected = (
+        torch.distributions.Normal(mean, sd).log_prob(value).sum()
+        if normalize
+        else (-0.5 * ((value - mean) / sd) ** 2).sum()
+    )
+    torch.testing.assert_close(result, expected)
+
+
+@pytest.mark.parametrize("as_tuple", [False, True])
+@pytest.mark.parametrize("shape", [(), (1,)])
+def test_diag_normal_sample_singleton_tree(as_tuple, shape):
+    mean = torch.full(shape, 0.5)
+    sd = torch.full(shape, 2.0)
+    wrap = (lambda value: (value,)) if as_tuple else (lambda value: {"weight": value})
+
+    torch.manual_seed(42)
+    result = diag_normal_sample(wrap(mean), wrap(sd), sample_shape=(2, 3))
+    samples = result[0] if as_tuple else result["weight"]
+    torch.manual_seed(42)
+    expected = torch.distributions.Normal(mean, sd).sample((2, 3))
+
+    assert samples.shape == (2, 3) + shape
+    torch.testing.assert_close(samples, expected)
+
+
+@pytest.mark.parametrize("as_tuple", [False, True])
+def test_diag_normal_singleton_tree_parameter_gradients(as_tuple):
+    def wrap(value):
+        return (value,) if as_tuple else {"weight": value}
+
+    value = torch.tensor(1.5, requires_grad=True)
+    mean = torch.tensor(0.5, requires_grad=True)
+    sd = torch.tensor(2.0, requires_grad=True)
+    result = diag_normal_log_prob(wrap(value), wrap(mean), wrap(sd))
+    actual = torch.autograd.grad(result, (mean, sd))
+    expected = torch.autograd.grad(
+        torch.distributions.Normal(mean, sd).log_prob(value), (mean, sd)
+    )
+    tree_map(torch.testing.assert_close, actual, expected)
+
+
 def test_per_samplify():
     def func(p, b):
         return p + b, p

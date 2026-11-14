@@ -795,9 +795,9 @@ def diag_normal_log_prob(
     Returns:
         Scalar log probability.
     """
-    if tree_size(mean) == 1:
+    if is_scalar(mean):
         mean = tree_map(lambda t: torch.tensor(mean, device=t.device), x)
-    if tree_size(sd_diag) == 1:
+    if is_scalar(sd_diag):
         sd_diag = tree_map(lambda t: torch.tensor(sd_diag, device=t.device), x)
 
     if normalize:
@@ -837,7 +837,7 @@ def diag_normal_sample(
     Returns:
         Sample(s) from normal distribution with the same structure as mean and sd_diag.
     """
-    if tree_size(sd_diag) == 1:
+    if is_scalar(sd_diag):
         sd_diag = tree_map(lambda t: torch.tensor(sd_diag, device=t.device), mean)
 
     return tree_map(
