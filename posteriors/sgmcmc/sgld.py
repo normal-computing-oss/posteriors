@@ -1,3 +1,4 @@
+from dataclasses import field
 from typing import Any
 from functools import partial
 import torch
@@ -62,8 +63,8 @@ class SGLDState(TensorClass["frozen"]):
     """
 
     params: TensorTree
-    log_posterior: Tensor = torch.tensor(torch.nan)
-    step: Tensor = torch.tensor(0)
+    log_posterior: Tensor = field(default_factory=lambda: torch.tensor(torch.nan))
+    step: Tensor = field(default_factory=lambda: torch.tensor(0))
 
 
 def init(params: TensorTree) -> SGLDState:

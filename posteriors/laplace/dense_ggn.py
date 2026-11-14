@@ -1,3 +1,4 @@
+from dataclasses import field
 from functools import partial
 from typing import Any
 import torch
@@ -78,7 +79,7 @@ class DenseLaplaceState(TensorClass["frozen"]):
 
     params: TensorTree
     prec: torch.Tensor
-    step: torch.Tensor = torch.tensor(0)
+    step: torch.Tensor = field(default_factory=lambda: torch.tensor(0))
 
 
 def init(

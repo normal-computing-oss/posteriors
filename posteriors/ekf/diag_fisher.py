@@ -1,3 +1,4 @@
+from dataclasses import field
 from typing import Any
 from functools import partial
 import torch
@@ -82,8 +83,8 @@ class EKFDiagState(TensorClass["frozen"]):
 
     params: TensorTree
     sd_diag: TensorTree
-    log_likelihood: torch.Tensor = torch.tensor([])
-    step: torch.Tensor = torch.tensor(0)
+    log_likelihood: torch.Tensor = field(default_factory=lambda: torch.tensor([]))
+    step: torch.Tensor = field(default_factory=lambda: torch.tensor(0))
 
 
 def init(

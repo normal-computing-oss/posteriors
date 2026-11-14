@@ -1,3 +1,4 @@
+from dataclasses import field
 from functools import partial
 import torch
 import torchopt
@@ -51,7 +52,7 @@ class TorchOptState(TensorClass["frozen"]):
 
     params: TensorTree
     opt_state: torchopt.typing.OptState
-    loss: torch.Tensor = torch.tensor([])
+    loss: torch.Tensor = field(default_factory=lambda: torch.tensor([]))
 
 
 def init(
