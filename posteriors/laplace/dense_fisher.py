@@ -153,9 +153,9 @@ def sample(
         precision_matrix=state.prec,
         validate_args=False,
     ).sample(sample_shape)
-    samples = samples.flatten(end_dim=-2)  # ensure samples is 2D
+    samples = samples.reshape(-1, state.prec.shape[0])
     mean_flat, unravel_func = tree_ravel(state.params)
     samples += mean_flat
     samples = torch.vmap(unravel_func)(samples)
-    samples = tree_map(lambda x: x.reshape(sample_shape + x.shape[-1:]), samples)
+    samples = tree_map(lambda x: x.reshape(sample_shape + x.shape[1:]), samples)
     return samples

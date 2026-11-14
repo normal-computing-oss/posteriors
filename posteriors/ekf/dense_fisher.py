@@ -2,6 +2,7 @@ from typing import Any
 from functools import partial
 import torch
 from torch.func import grad_and_value
+from optree import tree_map
 from optree.integrations.torch import tree_ravel
 from tensordict import TensorClass
 
@@ -197,5 +198,6 @@ def sample(
         validate_args=False,
     ).sample(sample_shape)
 
+    samples = samples.reshape(-1, mean_flat.numel())
     samples = torch.vmap(unravel_func)(samples)
-    return samples
+    return tree_map(lambda x: x.reshape(sample_shape + x.shape[1:]), samples)

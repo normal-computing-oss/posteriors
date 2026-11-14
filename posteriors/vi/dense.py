@@ -288,5 +288,6 @@ def sample(
         validate_args=False,
     ).rsample(sample_shape)
 
+    samples = samples.reshape(-1, mean_flat.numel())
     samples = torch.vmap(unravel_func)(samples)
-    return samples
+    return tree_map(lambda x: x.reshape(sample_shape + x.shape[1:]), samples)
