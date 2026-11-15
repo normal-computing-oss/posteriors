@@ -153,7 +153,7 @@ def sample(
         Sample(s) from the Normal distribution.
     """
     samples = torch.distributions.MultivariateNormal(
-        loc=torch.zeros(state.prec.shape[0], device=state.prec.device),
+        loc=state.prec.new_zeros(state.prec.shape[0]),
         precision_matrix=state.prec,
         validate_args=False,
     ).sample(sample_shape)
