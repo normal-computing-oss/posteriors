@@ -241,7 +241,7 @@ def nelbo(
     sampled_params_tree = torch.vmap(lambda s: unravel_func(s))(sampled_params)
 
     if stl:
-        mean_flat.detach()
+        mean_flat = mean_flat.detach()
         L = L_from_flat(L_factor.detach())
         cov = L @ L.T
         # Redefine distribution to sample from after stl
